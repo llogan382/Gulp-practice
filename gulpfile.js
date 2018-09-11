@@ -3,7 +3,8 @@ var gulp = require('gulp'),
 // gulp-concat is added as one of the dependencies in package.json, 
 //and called here
 concat = require('gulp-concat'),
-uglify = require('gulp-uglify');
+uglify = require('gulp-uglify').
+rename = require ('gulp-rename');
 
 
 
@@ -31,6 +32,9 @@ gulp.task("minifyScripts", function() {
     gulp.src("js/app.js")
     //script gets piped directly to uglify method. 
     .pipe(uglify())
+    //renames the file as it is created,
+    //preserving the original .js file. 
+    .pipe(rename('app.min.js'))
     //results of uglify go our .js file
     .pipe(gulp.dest('js'));
 } );
